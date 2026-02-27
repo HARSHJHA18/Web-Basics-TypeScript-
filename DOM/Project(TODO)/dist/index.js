@@ -36,6 +36,9 @@ function render() {
         let editbtn = document.createElement("button");
         editbtn.textContent = "Edit";
         li.appendChild(editbtn);
+        editbtn.addEventListener("click", () => {
+            editTodo(display.id);
+        });
     }
 }
 ;
@@ -44,4 +47,14 @@ function deleteTodo(id) {
     render();
 }
 ;
+function editTodo(id) {
+    let todoToEdit = todos.find(todo => todo.id === id);
+    if (!todoToEdit)
+        return;
+    let updatedTask = prompt("Edit your task:", todoToEdit.task);
+    if (updatedTask !== null && updatedTask.trim() !== "") {
+        todoToEdit.task = updatedTask.trim();
+        render();
+    }
+}
 export {};

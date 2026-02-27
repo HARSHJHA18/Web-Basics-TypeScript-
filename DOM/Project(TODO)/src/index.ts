@@ -68,5 +68,14 @@ function deleteTodo(id: string) {
 };
 
 function editTodo(id : string){
-    
+    let todoToEdit = todos.find(todo =>todo.id===id);
+
+    if(!todoToEdit) return;
+
+    let updatedTask = prompt("Edit your task:", todoToEdit.task);
+
+    if (updatedTask !== null && updatedTask.trim() !== "") {
+        todoToEdit.task = updatedTask.trim();
+        render();
+    }
 }
